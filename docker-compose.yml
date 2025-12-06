@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  pulumi:
+    build: .
+    image: aws-cheap-ai-agents-pulumi:latest
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+      - .pulumi:/root/.pulumi
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_REGION=${AWS_REGION:-eu-west-1}
+      - PULUMI_BACKEND_URL=file://~/.pulumi
+      - PULUMI_CONFIG_PASSPHRASE=${PULUMI_CONFIG_PASSPHRASE:-dev}
+    command: sh -c "pulumi login --local && (pulumi stack select dev 2>/dev/null || pulumi stack init dev) && pulumi up --yes"
+    stdin_open: false
+    tty: false
