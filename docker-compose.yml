@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   pulumi:
     build: .
@@ -14,6 +12,8 @@ services:
       - AWS_REGION=${AWS_REGION:-eu-west-1}
       - PULUMI_BACKEND_URL=file://~/.pulumi
       - PULUMI_CONFIG_PASSPHRASE=${PULUMI_CONFIG_PASSPHRASE:-dev}
+      - DOCKER_HUB_USERNAME=${DOCKER_HUB_USERNAME}
+      - DOCKER_HUB_TOKEN=${DOCKER_HUB_TOKEN}
     command: sh -c "pulumi login --local && (pulumi stack select dev 2>/dev/null || pulumi stack init dev) && pulumi up --yes"
     stdin_open: false
     tty: false

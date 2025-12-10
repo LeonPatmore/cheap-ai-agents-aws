@@ -1,3 +1,4 @@
 .pulumi
 __pycache__
 Pulumi.*.yaml
+.env

@@ -1,0 +1,5 @@
+---
+alwaysApply: true
+---
+
+Don't add comments in the code. The code should be written clearly. If clarity is required, embed the code in a function and name that function appropriately.
