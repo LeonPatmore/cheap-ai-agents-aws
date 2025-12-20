@@ -1,5 +1,7 @@
 # AWS App Runner - Slack MCP Server
 
+Author: Leon Patmore
+
 Deploy the Slack MCP server Docker container to AWS App Runner using Pulumi.
 
 ## Prerequisites
