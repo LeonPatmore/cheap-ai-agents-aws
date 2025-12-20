@@ -1,5 +1,7 @@
 # AWS App Runner - Docker Hub MCP Server
 
+Author: Leon Patmore
+
 Deploy the Docker Hub MCP server container to AWS App Runner using Pulumi.
 
 ## Prerequisites
