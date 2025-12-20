@@ -1,6 +1,6 @@
-# AWS App Runner - Slack MCP Server
+# AWS App Runner - Docker Hub MCP Server
 
-Deploy the Slack MCP server Docker container to AWS App Runner using Pulumi.
+Deploy the Docker Hub MCP server container to AWS App Runner using Pulumi.
 
 ## Prerequisites
 
@@ -30,7 +30,7 @@ docker-compose run --rm pulumi pulumi stack output service_url
 
 ## Configuration
 
-- Container: `mcp/slack:latest`
+- Container: `docker.io/mcp/dockerhub:latest`
 - Port: 3000
 - Instance: 0.25 vCPU, 0.5 GB memory
 - State: Local (`.pulumi/` directory)

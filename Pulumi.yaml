@@ -1,3 +1,3 @@
 name: aws-cheap-ai-agents
 runtime: python
-description: AWS App Runner deployment for Slack MCP server
+description: AWS App Runner deployment for Docker Hub MCP server

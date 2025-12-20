@@ -83,36 +83,38 @@ app_runner_policy = aws.iam.RolePolicy(
                 "Effect": "Allow",
                 "Action": [
                     "ecr:GetAuthorizationToken",
+                ],
+                "Resource": "*",
+            },
+            {
+                "Effect": "Allow",
+                "Action": [
                     "ecr:BatchCheckLayerAvailability",
                     "ecr:GetDownloadUrlForLayer",
                     "ecr:BatchGetImage",
+                    "ecr:BatchImportUpstreamImage",
                 ],
-                "Resource": "*",
+                "Resource": f"arn:aws:ecr:{region.name}:{current.account_id}:repository/docker.io/mcp/dockerhub",
             },
         ],
     }),
 )
 
 
-# Create the App Runner service
-# Using ECR pull-through cache to pull mcp/slack:latest from Docker Hub
-# The image path format for pull-through cache is:
-# <account-id>.dkr.ecr.<region>.amazonaws.com/docker.io/<namespace>/<image>:<tag>
 app_runner_service = aws.apprunner.Service(
-    "slackMcpServer",
-    service_name="slack-mcp-server",
+    "dockerhubMcpServer",
+    service_name="dockerhub-mcp-server",
     source_configuration=aws.apprunner.ServiceSourceConfigurationArgs(
         authentication_configuration=aws.apprunner.ServiceSourceConfigurationAuthenticationConfigurationArgs(
             access_role_arn=app_runner_role.arn,
         ),
         image_repository=aws.apprunner.ServiceSourceConfigurationImageRepositoryArgs(
-            image_identifier=f"{current.account_id}.dkr.ecr.{region.name}.amazonaws.com/docker.io/mcp/slack:latest",
+            image_identifier=f"{current.account_id}.dkr.ecr.{region.name}.amazonaws.com/docker.io/mcp/dockerhub:latest",
             image_repository_type="ECR",
             image_configuration=aws.apprunner.ServiceSourceConfigurationImageRepositoryImageConfigurationArgs(
-                port="3000",  # Default port for MCP servers, adjust if needed
+                port="3000",
+                start_command="--transport=http",
                 runtime_environment_variables={
-                    # Add any required environment variables here
-                    # For example: "SLACK_BOT_TOKEN": "...", "SLACK_APP_TOKEN": "..."
                 },
             ),
         ),
