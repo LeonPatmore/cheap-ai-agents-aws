@@ -1,4 +1,4 @@
-# AWS App Runner - Docker Hub MCP Server 9d852ca4-one
+# AWS App Runner - Docker Hub MCP Server 9d852ca4-one 9d852ca4-two
 
 Deploy the Docker Hub MCP server container to AWS App Runner using Pulumi.
 
