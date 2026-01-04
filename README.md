@@ -44,4 +44,3 @@ docker-compose run --rm pulumi pulumi destroy --yes
 ```
 
 TEST_MARKER_SAMPLE
-
