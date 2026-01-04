@@ -41,4 +41,6 @@ Add environment variables in `__main__.py` under `runtime_environment_variables`
 
 ```bash
 docker-compose run --rm pulumi pulumi destroy --yes
+
+TEST_MARKER_SAMPLE
 ```
